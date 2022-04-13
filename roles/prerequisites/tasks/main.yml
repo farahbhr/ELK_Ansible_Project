@@ -1,0 +1,26 @@
+---
+- name: Include variables
+  include_vars:
+    file: ../../vars.yml
+
+- name: Install Oracle Java 11
+  yum: 
+    name: 
+    - epel-release
+    - java-11-openjdk
+    - java-11-openjdk-devel
+    state: latest
+
+- name: Install Ansible and more
+  yum:
+    name:
+    - wget
+    - nginx
+    state: latest
+
+#- name: Start and Enable Nginx
+#  service:
+#    name: nginx
+#    state: started
+#    enabled: yes
+#  notify: Restart Nginx  

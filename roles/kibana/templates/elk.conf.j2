@@ -1,0 +1,23 @@
+server {
+    listen 443 http2 ssl;
+    listen [::]:443 http2 ssl;
+
+    server_name {{ kibana_host }};
+
+
+    ssl_certificate      /etc/letsencrypt/archive/{{ kibana_host }}/cert1.pem;
+    ssl_certificate_key  /etc/letsencrypt/archive/{{ kibana_host }}/privkey1.pem;
+    
+
+
+    
+    location / {
+        proxy_pass http://{{ kibana_host }}:{{ kibana_port }};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+

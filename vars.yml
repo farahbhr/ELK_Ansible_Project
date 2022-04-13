@@ -1,0 +1,35 @@
+---
+
+#host_ip: '192.168.100.21'
+#host_ip: hostvars[inventory_hostname]['ansible_default_ipv4']['address']
+
+
+elasticsearch_version: '7.x'
+
+#------------------------ Elasticsearch ---------------------------
+
+elastic_host: '192.168.100.26'
+elastic_port: 9200
+elastic_yml: /etc/elasticsearch/elasticsearch.yml
+
+#------------------------- Kibana ----------------------------------
+
+kibana_host: '192.168.100.25'
+kibana_port: 5601
+kibana_yml: /etc/kibana/kibana.yml
+
+#------------------------- Logstash ---------------------------------
+
+logstash_port: 5044
+
+#------------------------ Filebeat ----------------------------------
+
+filebeat_yml: /etc/filebeat/filebeat.yml
+
+#------------------------ Metricbeat --------------------------------
+
+metricbeat_yml: /etc/metricbeat/metricbeat.yml
+
+#------------------------ Packetbeat --------------------------------
+
+packetbeat_yml: /etc/packetbeat/packetbeat.yml

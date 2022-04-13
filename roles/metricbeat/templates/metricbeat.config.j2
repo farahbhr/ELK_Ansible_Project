@@ -1,0 +1,20 @@
+#--------------------------------- Kibana -------------------------------------
+
+setup.kibana:
+  host: "{{ kibana_host }}:{{ kibana_port}}"
+
+#--------------------------- Modules configuration ----------------------------
+
+metricbeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: true
+
+#============================== Dashboards ====================================
+
+setup.dashboards.enabled: true
+
+
+#---------------------------- Elasticsearch -----------------------------------
+
+output.elasticsearch:
+  hosts: ["{{ elastic_host }}:{{  elastic_port }}"]

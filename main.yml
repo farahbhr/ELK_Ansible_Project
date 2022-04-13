@@ -1,0 +1,72 @@
+- hosts: elasticsearch
+  gather_facts: yes
+  vars_files:
+    - vars.yml
+
+  tasks:
+
+  - name: Install Prerequisites
+    become: yes
+    import_role:
+      name: prerequisites
+
+  - name: Disable SELinux
+    become: yes
+    selinux:
+      state: disabled
+
+  - name: Elk_Stack Repo
+    become: yes
+    import_role:
+      name: elk_stack
+
+  - name: Install ElasticSearch
+    become: yes
+    import_role:
+      name: elasticsearch
+
+  - name: Install Filebeat
+    become: yes
+    import_role:
+      name: filebeat
+  
+  - name: Install Metricbeat    
+    become: yes
+    import_role:
+      name: metricbeat      
+
+  - name: Install Packetbeat
+    become: yes
+    import_role:
+      name: packetbeat
+ 
+- hosts: logkibana
+  gather_facts: yes
+  vars_files:
+    - vars.yml
+  tasks:
+
+  - name: Install Prerequisites
+    become: yes
+    import_role:
+      name: prerequisites
+
+  - name: Disable SELinux
+    become: yes
+    selinux:
+      state: disabled
+
+  - name: Elk_Stack Repo
+    become: yes
+    import_role:
+      name: elk_stack
+
+  - name: Install Kibana
+    become: yes
+    import_role:
+      name: kibana
+
+  - name: Install Logstash
+    become: yes
+    import_role:
+      name: logstash 

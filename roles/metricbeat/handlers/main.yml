@@ -1,0 +1,5 @@
+---
+- name: Restart metricbeat
+  service:
+    state: restarted
+    name: metricbeat

@@ -1,0 +1,17 @@
+
+[elasticsearch]
+192.168.100.26
+
+[elasticsearch:vars]
+ansible_user=elastic
+ansible_password=farah123
+ansible_sudo_pass=farah123
+
+[logkibana]
+192.168.100.25
+
+[logkibana:vars]
+ansible_user=kibana
+ansible_password=farah123
+ansible_sudo_pass=farah123
+
