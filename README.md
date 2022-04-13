@@ -1,4 +1,4 @@
-# ELK_Ansible
+# ELK_Ansible_Project
 
 - To run the playbook:</br>
 ansible-playbook main.yml
