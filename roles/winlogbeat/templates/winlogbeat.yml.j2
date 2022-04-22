@@ -1,0 +1,27 @@
+---
+
+#Events
+winlogbeat.event_logs:
+  {{ winlogbeat_event_logs }}
+
+
+winlogbeat.registry_file: {{ winlogbeat_registry_file }}
+
+#winlogbeat.event_logs:
+#  - name: Application
+#  - name: Security
+#  - name: System
+
+#-------------------------------- Output logstash --------------------------
+output.logstash:
+  hosts: ["{{ kibana_host }}:{{ logstash_port }}"]
+
+
+#=============================== Dashboards =================================
+ 
+setup.dashboards.enabled: true
+
+#-------------------------------- Kibana -------------------------------------
+setup.kibana:
+  host: "{{ kibana_host }}:{{ kibana_port }}"
+

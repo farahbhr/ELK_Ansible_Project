@@ -1,2 +1,7 @@
 ---
-#host: elk.vladlen-aws.com
+
+filebeat_download_url_base: 'https://artifacts.elastic.co/downloads/beats/filebeat'
+file_ext: '.zip'
+filebeat_download_file: 'filebeat-7.17.0-windows-x86_64'
+filebeat_path: 'C:\Program Files\Filebeat'
+

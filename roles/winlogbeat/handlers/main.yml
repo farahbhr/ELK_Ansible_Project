@@ -1,0 +1,9 @@
+---
+
+- name: Restart winlogbeat 
+  win_service: 
+    name: winlogbeat 
+    state: restarted
+  become: yes
+  #become_method: runas
+  become_user: test_user

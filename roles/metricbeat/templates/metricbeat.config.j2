@@ -16,5 +16,10 @@ setup.dashboards.enabled: true
 
 #---------------------------- Elasticsearch -----------------------------------
 
-output.elasticsearch:
-  hosts: ["{{ elastic_host }}:{{  elastic_port }}"]
+#output.elasticsearch:
+#  hosts: ["{{ elastic_host }}:{{  elastic_port }}"]
+
+#---------------------------- Logstash -----------------------------------
+
+output.logstash:
+  hosts: ["{{ kibana_host }}:{{  logstash_port }}"]

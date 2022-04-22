@@ -1,26 +1,8 @@
 ---
-- name: Include variables
-  include_vars:
-    file: ../../vars.yml
 
-- name: Install filebeat
-  yum: 
-    name: filebeat
-    state: latest 
-    update_cache: yes
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
 
-- name: Create filebeat config
-  template:
-    src: filebeat.config.j2
-    dest: "{{ filebeat_yml }}"
-  notify: Restart filebeat
-
-- name: Force systemd to reread configs
-  systemd: daemon_reload=yes
-
-- name: Enable filebeat.service
-  service:
-    name: filebeat.service
-    state: started
-    enabled: yes
+- include: windows.yml
+  when: ansible_os_family == 'Windows'
 

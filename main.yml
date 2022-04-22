@@ -1,3 +1,4 @@
+
 - hosts: elasticsearch
   gather_facts: yes
   vars_files:
@@ -5,10 +6,10 @@
 
   tasks:
 
-  - name: Install Prerequisites
-    become: yes
-    import_role:
-      name: prerequisites
+#  - name: Install Prerequisites
+#    become: yes
+#    import_role:
+#      name: prerequisites
 
   - name: Disable SELinux
     become: yes
@@ -29,16 +30,16 @@
     become: yes
     import_role:
       name: filebeat
-  
-  - name: Install Metricbeat    
-    become: yes
-    import_role:
-      name: metricbeat      
-
-  - name: Install Packetbeat
-    become: yes
-    import_role:
-      name: packetbeat
+#  
+#  - name: Install Metricbeat    
+#    become: yes
+#    import_role:
+#      name: metricbeat      
+#
+#  - name: Install Packetbeat
+#    become: yes
+#    import_role:
+#      name: packetbeat
  
 - hosts: logkibana
   gather_facts: yes
@@ -46,10 +47,10 @@
     - vars.yml
   tasks:
 
-  - name: Install Prerequisites
-    become: yes
-    import_role:
-      name: prerequisites
+#  - name: Install Prerequisites
+#    become: yes
+#    import_role:
+#      name: prerequisites
 
   - name: Disable SELinux
     become: yes
@@ -70,3 +71,22 @@
     become: yes
     import_role:
       name: logstash 
+
+
+- hosts: windows
+  #gather_facts: yes
+  vars_files:
+    - vars.yml
+  tasks:
+
+  - name: Install WinlogBeat
+    #become_method: runas
+    become: false
+    import_role:
+      name: winlogbeat
+
+  - name: Install Filebeat
+    become: false
+    import_role:
+      name: filebeat
+

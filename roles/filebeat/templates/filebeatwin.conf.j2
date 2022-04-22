@@ -4,12 +4,11 @@ filebeat.inputs:
 - type: log
   enabled: false
   paths:
-    - /var/log/elasticsearch/elasticsearch.log
-    #- C:\Users\farah\OneDrive\Bureau\Sofrecom\log.cef
+    - C:\Users\test_user\Desktop\Sofrecom\log.cef
 #- type: syslog  #activate syslog module
 #  protocol.tcp:
 #    host: "{{ elastic_host }}:514"
-  
+
 #============================= Filebeat modules ===============================
 
 filebeat.config.modules:
@@ -34,6 +33,7 @@ setup.dashboards.enabled: true
 
 output.logstash:
   hosts: ["{{ kibana_host }}:{{ logstash_port }}"]
+
 
 #----------------------------- Kibana output --------------------------------
 

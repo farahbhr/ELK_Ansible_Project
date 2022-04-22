@@ -1,6 +1,6 @@
 
 [elasticsearch]
-192.168.100.26
+192.168.56.101
 
 [elasticsearch:vars]
 ansible_user=elastic
@@ -8,10 +8,30 @@ ansible_password=farah123
 ansible_sudo_pass=farah123
 
 [logkibana]
-192.168.100.25
+192.168.56.102
 
 [logkibana:vars]
 ansible_user=kibana
 ansible_password=farah123
 ansible_sudo_pass=farah123
 
+ansible_python_interpreter=/usr/bin/python3
+
+[windows]
+192.168.56.1
+
+[windows:vars]
+#ansible_user=farahbhr1@gmail.com
+ansible_user=test_user
+ansible_password=farah123
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+become_method=runas
+#ansible_become: false
+
+#ansible_winrm_transport=ntlm 
+#ansible_port=5986 
+#ansible_python_interpreter=C:\Python
+
+#ansible_port=5986
+#ansible_winrm_kerberos_delegation=true

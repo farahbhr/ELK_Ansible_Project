@@ -1,5 +1,11 @@
 ---
+
 - name: Restart filebeat
   service:
     state: restarted
     name: filebeat
+
+- name: Restart filebeat win
+  win_service:
+    name: filebeat
+    state: restarted
