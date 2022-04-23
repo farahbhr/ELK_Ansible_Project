@@ -2,9 +2,11 @@
 
 filebeat.inputs:
 - type: log
-  enabled: false
+  enabled: true
   paths:
-    - /var/log/elasticsearch/elasticsearch.log
+    - /var/log/elasticsearch/*
+    - /var/log/secure
+    - /var/log/messages
     #- C:\Users\farah\OneDrive\Bureau\Sofrecom\log.cef
 #- type: syslog  #activate syslog module
 #  protocol.tcp:
@@ -14,7 +16,10 @@ filebeat.inputs:
 
 filebeat.config.modules:
   path: ${path.config}/modules.d/*.yml
-  reload.enabled: false
+  reload.enabled: true
+
+#filebeat.modules:
+#-
 
 #==================== Elasticsearch template setting ==========================
 

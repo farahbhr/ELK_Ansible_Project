@@ -2,9 +2,13 @@
 
 filebeat.inputs:
 - type: log
-  enabled: false
+  enabled: true
   paths:
     - C:\Users\test_user\Desktop\Sofrecom\log.cef
+    - C:\ProgramData\winlogbeat\logs\*
+
+#filebeat.registry.path: C:\ProgramData\filebeat\registry\filebeat\*
+
 #- type: syslog  #activate syslog module
 #  protocol.tcp:
 #    host: "{{ elastic_host }}:514"
@@ -13,7 +17,7 @@ filebeat.inputs:
 
 filebeat.config.modules:
   path: ${path.config}/modules.d/*.yml
-  reload.enabled: false
+  reload.enabled: true
 
 #==================== Elasticsearch template setting ==========================
 
