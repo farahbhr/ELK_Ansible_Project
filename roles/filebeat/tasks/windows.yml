@@ -1,30 +1,30 @@
 ---
 
-- name: Include variables
+- name: Windows | Include variables
   include_vars:
     file: ../../vars.yml
 
-- name: Create directory
+- name: Windows | Create directory
   win_file:
     path: "{{ filebeat_path }}"
     state: directory
 
-- name: Get filebeat zip
+- name: Windows | Get filebeat zip
   win_get_url:
     url: "{{ filebeat_download_url_base }}/{{ filebeat_download_file }}{{ file_ext }}"
     dest: "{{ filebeat_path }}/{{ filebeat_download_file }}{{ file_ext }}"
 
-- name: Unzip filebeat
-  win_unzip:
-    src: "{{ filebeat_path }}/{{ filebeat_download_file }}{{ file_ext }}"
-    dest: "{{ filebeat_path }}"
+#- name: Windows | Unzip filebeat
+#  win_unzip:
+#    src: "{{ filebeat_path }}/{{ filebeat_download_file }}{{ file_ext }}"
+#    dest: "{{ filebeat_path }}"
 
-- name: Install the service via script
+- name: Windows | Install the service via script
   win_command: powershell.exe -ExecutionPolicy ByPass -File "{{ filebeat_path }}/{{ filebeat_download_file }}/install-service-filebeat.ps1"
   args:
     chdir: "{{ filebeat_path }}/{{ filebeat_download_file }}"
 
-- name: Copy Filebeat configuration
+- name: Windows | Copy Filebeat configuration
   win_template:
     src: filebeatwin.conf.j2
     dest: "{{ filebeat_path }}/{{ filebeat_download_file }}/filebeat.yml"

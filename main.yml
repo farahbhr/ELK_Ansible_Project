@@ -26,15 +26,15 @@
     import_role:
       name: elasticsearch
 
-  - name: Install Filebeat
-    become: yes
-    import_role:
-      name: filebeat
-#  
-#  - name: Install Metricbeat    
+#  - name: Install Filebeat
 #    become: yes
 #    import_role:
-#      name: metricbeat      
+#      name: filebeat
+#  
+  - name: Install Metricbeat    
+    become: yes
+    import_role:
+      name: metricbeat      
 #
 #  - name: Install Packetbeat
 #    become: yes
@@ -79,14 +79,19 @@
     - vars.yml
   tasks:
 
-  - name: Install WinlogBeat
-    #become_method: runas
-    become: false
-    import_role:
-      name: winlogbeat
+#  - name: Install WinlogBeat
+#    #become_method: runas
+#    become: false
+#    import_role:
+#      name: winlogbeat
 
-  - name: Install Filebeat
+#  - name: Install Filebeat
+#    become: false
+#    import_role:
+#      name: filebeat
+
+  - name: Install Metricbeat
     become: false
     import_role:
-      name: filebeat
+      name: metricbeat
 

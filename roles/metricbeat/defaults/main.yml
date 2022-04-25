@@ -1,2 +1,7 @@
 ---
-# defaults file for metricbeat
+
+metricbeat_download_url_base: 'https://artifacts.elastic.co/downloads/beats/metricbeat'
+file_ext: '.zip'
+metricbeat_download_file: 'metricbeat-7.17.3-windows-x86_64'
+metricbeat_path: 'C:\Program Files\Metricbeat'
+

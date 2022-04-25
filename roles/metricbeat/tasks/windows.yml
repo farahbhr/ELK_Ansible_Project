@@ -1,0 +1,32 @@
+---
+
+- name: Windows | Include variables
+  include_vars:
+    file: ../../vars.yml
+
+- name: Windows | Create directory
+  win_file:
+    path: "{{ metricbeat_path }}"
+    state: directory
+
+- name: Windows | Get metricbeat zip
+  win_get_url:
+    url: "{{ metricbeat_download_url_base }}/{{ metricbeat_download_file }}{{ file_ext }}"
+    dest: "{{ metricbeat_path }}/{{ metricbeat_download_file }}{{ file_ext }}"
+
+- name: Windows | Unzip metricbeat
+  win_unzip:
+    src: "{{ metricbeat_path }}/{{ metricbeat_download_file }}{{ file_ext }}"
+    dest: "{{ metricbeat_path }}"
+
+- name: Windows | Install the service via script
+  win_command: powershell.exe -ExecutionPolicy ByPass -File "{{ metricbeat_path }}/{{ metricbeat_download_file }}/install-service-metricbeat.ps1"
+  args:
+    chdir: "{{ metricbeat_path }}/{{ metricbeat_download_file }}"
+
+- name: Windows | Copy Metricbeat configuration
+  win_template:
+    src: metricbeat.config.j2
+    dest: "{{ metricbeat_path }}/{{ metricbeat_download_file }}/metricbeat.yml"
+  notify: Restart metricbeat win
+

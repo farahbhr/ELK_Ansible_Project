@@ -1,0 +1,51 @@
+---
+- name: RedHat | Include variables
+  include_vars:
+    file: ../../vars.yml
+
+- name: Add metricbeat repository
+  yum_repository:
+    name: metricbeat
+    description: Beats Repo
+    baseurl: https://artifacts.elastic.co/packages/7.x/yum
+    gpgkey: https://packages.elastic.co/GPG-KEY-elasticsearch
+    gpgcheck: yes
+    enabled: yes
+    owner: root
+    group: root
+    state: present
+    mode: 0600
+
+- name: RedHat | Install metricbeat package
+  package:
+    pkg={{item}}
+    state=installed
+  with_items:
+    - metricbeat
+
+#- name: Install Metricbeat
+#  yum:
+#    name: metricbeat
+    #state: latest
+#    update_cache: yes
+
+- name: RedHat | Create metricbeat config
+  template:
+    src: metricbeat.config.j2
+    dest: "{{ metricbeat_yml }}"
+    #owner: root
+    #group: root
+    #mode: 0644
+  notify: Restart metricbeat
+
+- name: RedHat | Force systemd to reread configs
+  systemd: daemon_reload=yes
+
+- name: RedHat | Enable metricbeat.service
+  service:
+    name: metricbeat
+    state: started
+    enabled: yes
+
+
+

@@ -3,3 +3,8 @@
   service:
     state: restarted
     name: metricbeat
+
+- name: Restart metricbeat win
+  win_service:
+    name: metricbeat
+    state: restarted
