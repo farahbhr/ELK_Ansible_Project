@@ -1,9 +1,7 @@
 Role Name
 =========
 
-This roles installs and configures winlogbeat on target servers.
-Winlogbeat is a lightweight shipper that can capture event data from any event logs running on your system.
-Winlogbeat is an Elastic Beat.
+This roles installs and configures Kibana UI on target server.
 
 Dependencies
 ------------
@@ -12,8 +10,6 @@ This role requires the following roles to be run on the target server first
 prerequisites
 elk_stack
 elasticsearch
-logstash
-kibana
 
 License
 -------
@@ -24,5 +20,3 @@ Author Information
 ------------------
 
 Farah
-
-
