@@ -4,16 +4,16 @@ This repository consists of automating the deployment of an Elastic Stack lab us
 
 * ELK Stack:
 
-Elasticsearch: 7.x
-Logstash: 7.x
-Kibana: 7.x
+Elasticsearch: 7.x</br>
+Logstash: 7.x</br>
+Kibana: 7.x</br>
 
 * Beats:
 
-Metricbeat: 7.x
-Filebeat: 7.x
-Winlogbeat: 7.x
-Packetbeat: 7.x
+Metricbeat: 7.x</br>
+Filebeat: 7.x</br>
+Winlogbeat: 7.x</br>
+Packetbeat: 7.x</br>
 
 ## Deployment of ElasticStack:
 
