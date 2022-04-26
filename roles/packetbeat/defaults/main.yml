@@ -1,2 +1,7 @@
 ---
-# defaults file for packetbeat
+
+packetbeat_download_url_base: 'https://artifacts.elastic.co/downloads/beats/packetbeat'
+file_ext: '.zip'
+packetbeat_download_file: 'packetbeat-7.17.3-windows-x86_64'
+packetbeat_path: 'C:\Program Files\Packetbeat'
+

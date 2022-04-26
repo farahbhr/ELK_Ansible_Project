@@ -1,0 +1,38 @@
+---
+
+- name: Windows | Include variables
+  include_vars:
+    file: ../../vars.yml
+
+- name: Windows | Install winpcap
+  win_chocolatey:
+    name: winpcap
+    version: '4.1.3.20161116'
+    source: http://internal/odata/repo
+    state: present
+
+- name: Windows | Create directory
+  win_file:
+    path: "{{ packetbeat_path }}"
+    state: directory
+
+- name: Windows | Get packetbeat zip
+  win_get_url:
+    url: "{{ packetbeat_download_url_base }}/{{ packetbeat_download_file }}{{ file_ext }}"
+    dest: "{{ packetbeat_path }}/{{ packetbeat_download_file }}{{ file_ext }}"
+
+- name: Windows | Unzip packetbeat
+  win_unzip:
+    src: "{{ packetbeat_path }}/{{ packetbeat_download_file }}{{ file_ext }}"
+    dest: "{{ packetbeat_path }}"
+
+- name: Windows | Install the service via script
+  win_command: powershell.exe -ExecutionPolicy ByPass -File "{{ packetbeat_path }}/{{ packetbeat_download_file }}/install-service-packetbeat.ps1"
+  args:
+    chdir: "{{ packetbeat_path }}/{{ packetbeat_download_file }}"
+
+- name: Windows | Copy Packetbeat configuration
+  win_template:
+    src: packetbeatwin.config.j2
+    dest: "{{ packetbeat_path }}/{{ packetbeat_download_file }}/packetbeat.yml"
+  notify: Restart packetbeat win

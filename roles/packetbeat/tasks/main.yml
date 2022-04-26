@@ -1,48 +1,8 @@
 ---
-- name: Include variables
-  include_vars:
-    file: ../../vars.yml
 
-- name: Add packetbeat repository
-  yum_repository:
-    name: packetbeat
-    description: Beats Repo
-    baseurl: https://artifacts.elastic.co/packages/7.x/yum
-    gpgkey: https://packages.elastic.co/GPG-KEY-elasticsearch
-    gpgcheck: yes
-    enabled: yes
-    owner: root
-    group: root
-    state: present
-    mode: 0600
-#
-- name: Install packetbeat package
-  package:
-    pkg={{item}}
-    state=installed
-  with_items:
-    - packetbeat
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
 
-#- name: Install Metricbeat
-#  yum:
-#    name: metricbeat
-    #state: latest
-#    update_cache: yes
+- include: windows.yml
+  when: ansible_os_family == 'Windows'
 
-- name: Create packetbeat config
-  template:
-    src: packetbeat.config.j2
-    dest: "{{ packetbeat_yml }}"
-    #owner: root
-    #group: root
-    #mode: 0644
-  notify: Restart packetbeat
-
-- name: Force systemd to reread configs
-  systemd: daemon_reload=yes
-
-- name: Enable packetbeat.service
-  service:
-    name: packetbeat
-    state: started
-    enabled: yes

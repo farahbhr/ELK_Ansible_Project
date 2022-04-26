@@ -3,3 +3,9 @@
   service:
     state: restarted
     name: packetbeat
+
+- name: Restart packetbeat win
+  win_service:
+    name: packetbeat
+    state: restarted
+
