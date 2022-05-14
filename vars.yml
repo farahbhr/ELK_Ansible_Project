@@ -8,13 +8,13 @@ elasticsearch_version: '7.x'
 
 #------------------------ Elasticsearch ---------------------------
 
-elastic_host: '192.168.56.101'
+elastic_host: '192.168.56.104'
 elastic_port: 9200
 elastic_yml: /etc/elasticsearch/elasticsearch.yml
 
 #------------------------- Kibana ----------------------------------
 
-kibana_host: '192.168.56.102'
+kibana_host: '192.168.56.105'
 kibana_port: 5601
 kibana_yml: /etc/kibana/kibana.yml
 

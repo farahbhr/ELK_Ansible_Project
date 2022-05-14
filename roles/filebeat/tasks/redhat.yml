@@ -15,6 +15,15 @@
     dest: "{{ filebeat_yml }}"
   notify: Restart filebeat
 
+- name: RedHat | Enable system module
+  command: filebeat modules enable system
+
+#- name: RedHat | Setup filebeat
+#  command: filebeat setup
+
+#- name: RedHat | Setup filebeat
+#  command: filebeat setup --pipelines --modules system
+
 - name: RedHat | Force systemd to reread configs
   systemd: daemon_reload=yes
 

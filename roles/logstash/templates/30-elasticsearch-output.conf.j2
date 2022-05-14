@@ -1,0 +1,17 @@
+output {
+  
+  elasticsearch {
+    hosts => ["{{ elastic_host }}:{{ elastic_port }}"]
+    manage_template => false
+    index => "%{[@metadata][beat]}-%{+YYYY.MM}"
+    document_type => "%{[@metadata][type]}"
+  }
+
+#  email {
+#    from => "logstash@log.com
+#    subject => "logstash alert"
+#    to => "farahbhr1@gmail.com"
+#    via => "smtp"
+#    body => "critical log , visit this link http://192.168.56.102:5601"
+#  }
+}

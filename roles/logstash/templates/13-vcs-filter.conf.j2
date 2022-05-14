@@ -1,0 +1,14 @@
+filter{
+  if [fields][type] == "vcs" {
+    # ignore log comments
+    if [message] =~ "^#" {
+      drop {}
+    }
+    grok {
+      match => { "message" => "%{TIMESTAMP_ISO8601:log_timestamp} %{WORD:server} %{WORD:service}: %{NOTSPACE:code} %{GREEDYDATA:logmsg}" }
+                
+      remove_field => "message"
+    }
+  }
+}
+

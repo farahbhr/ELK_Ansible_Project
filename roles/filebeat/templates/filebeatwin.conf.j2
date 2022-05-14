@@ -4,8 +4,15 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - C:\Users\test_user\Desktop\Sofrecom\log.cef
-    - C:\ProgramData\winlogbeat\logs\*
+    - C:\Users\test_user\Desktop\VCS_logs\*\messages.err
+    - C:\Users\test_user\Desktop\VCS_logs\*\messages.txt
+#    - C:\Users\test_user\Desktop\IIS_logs\*.log
+#    - C:\ProgramData\winlogbeat\logs\*
+
+#logging.level: debug
+  fields:
+    type: vcs
+
 
 #filebeat.registry.path: C:\ProgramData\filebeat\registry\filebeat\*
 

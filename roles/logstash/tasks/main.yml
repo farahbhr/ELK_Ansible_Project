@@ -9,23 +9,72 @@
     state: latest 
     update_cache: yes
 
-- name: Create beats-input.conf
+#- name: Install logstash output email
+#  command: /usr/share/logstash/bin/logstash-plugin install logstash-output-email
+
+- name: Create 02-beats-input.conf.j2
   template:
-    src: beats-input.conf.j2
-    dest: /etc/logstash/conf.d/beats-input.conf
+    src: 02-beats-input.conf.j2
+    dest: /etc/logstash/conf.d/02-beats-input.conf
   notify: Restart Logstash
 
-#- name: Create 10-syslog-filter.conf
+#- name: Create 10-syslog-filter.conf.j2
 #  template:
 #    src: 10-syslog-filter.conf.j2
 #    dest: /etc/logstash/conf.d/10-syslog-filter.conf
 #  notify: Restart Logstash
 
-- name: Create elasticsearch-output.conf
+#- name: Create 11-iis-filter.conf.j2
+#  template:
+#    src: 11-iis-filter.conf.j2
+#    dest: /etc/logstash/conf.d/11-iis-filter.conf
+#  notify: Restart Logstash
+
+- name: Create 12-iis-filter.conf.j2
   template:
-    src: elasticsearch-output.conf.j2
-    dest: /etc/logstash/conf.d/elasticsearch-output.conf
+    src: 12-iis-filter.conf.j2
+    dest: /etc/logstash/conf.d/12-iis-filter.conf
   notify: Restart Logstash
+
+- name: Create 13-vcs-filter.conf.j2
+  template:
+    src: 13-vcs-filter.conf.j2
+    dest: /etc/logstash/conf.d/13-vcs-filter.conf
+  notify: Restart Logstash
+
+- name: Create 30-elasticsearch-output.conf.j2
+  template:
+    src: 30-elasticsearch-output.conf.j2
+    dest: /etc/logstash/conf.d/30-elasticsearch-output.conf
+  notify: Restart Logstash
+
+
+#- name: Create beats-input.conf
+#  template:
+#    src: input.conf.j2
+#    dest: /etc/logstash/conf.d/input.conf
+#  notify: Restart Logstash
+#
+#- name: Create iis-logs-filter.conf
+#  template:
+#    src: iis_filter.conf.j2
+#    dest: /etc/logstash/conf.d/iis_filter.conf
+#  notify: Restart Logstash
+#
+#- name: Create elasticsearch-output.conf
+#  template:
+#    src: output.conf.j2
+#    dest: /etc/logstash/conf.d/output.conf
+#  notify: Restart Logstash
+
+#- name: Create my-pipeline.conf
+#  template:
+#    src: my-pipeline.conf.j2
+#    dest: /etc/logstash/conf.d/my-pipeline.conf
+#  notify: Restart Logstash
+
+#- name: Run logstash
+#  command: /usr/share/logstash/bin/logstash -f my-pipeline.conf --config.reload.automatic
 
 # - name: 
 #   shell: sudo -u logstash /usr/share/logstash/bin/logstash --path.settings /etc/logstash -t

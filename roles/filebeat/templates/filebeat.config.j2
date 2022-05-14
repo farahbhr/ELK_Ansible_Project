@@ -4,9 +4,10 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /var/log/secure
-    - /var/log/messages
-    #- C:\Users\farah\OneDrive\Bureau\Sofrecom\log.cef
+    - /home/kibana/*.log
+#    - /var/log/secure
+#    - /var/log/messages
+
 #- type: syslog  #activate syslog module
 #  protocol.tcp:
 #    host: "{{ elastic_host }}:514"

@@ -30,28 +30,5 @@
     dest: "{{ filebeat_path }}/{{ filebeat_download_file }}/filebeat.yml"
   notify: Restart filebeat win
 
-- name: Windows | Enable and configure iis module
-  win_command: powershell.exe -cd "{{ filebeat_path }}/{{ filebeat_download_file }}" ; ./filebeat modules enable iis
-  args:
-    chdir: "{{ filebeat_path }}/{{ filebeat_download_file }}"
-
-- name: Windows | Copy IIS module configuration
-  win_template:
-    src: iis.yml.j2
-    dest: "{{ filebeat_path }}/{{ filebeat_download_file }}/modules.d/iis.yml"
-  notify: Restart filebeat win
-
-
-
-
-#- name: Windows | Copy Filebeat configuration pipeline
-#  win_template:
-#    src: pipeline.yml.j2
-#    dest: "{{ filebeat_path }}/{{ filebeat_download_file }}/module/iis/access/ingest/pipeline.yml"
-#  notify: Restart filebeat win
-
-#- name: Windows | Enable and configure iis module pipeline
-#  win_command: powershell.exe -cd "{{ filebeat_path }}/{{ filebeat_download_file }}" ; ./filebeat setup --pipelines --modules iis
-#  args:
-#    chdir: "{{ filebeat_path }}/{{ filebeat_download_file }}"
-
+- name: Windows | Enable and configure system module
+  win_command: powershell.exe -{{ "cd 'C:\Program Files\Filebeat\filebeat-7.17.3-windows-x86_64\' ; ./filebeat modules enable iis" }}

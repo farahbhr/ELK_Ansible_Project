@@ -1,6 +1,6 @@
 
 [elasticsearch]
-192.168.56.101
+192.168.56.104
 
 [elasticsearch:vars]
 ansible_user=elastic
@@ -8,7 +8,7 @@ ansible_password=farah123
 ansible_sudo_pass=farah123
 
 [logkibana]
-192.168.56.102
+192.168.56.105
 
 [logkibana:vars]
 ansible_user=kibana

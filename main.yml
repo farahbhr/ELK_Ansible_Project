@@ -35,11 +35,11 @@
 #    become: yes
 #    import_role:
 #      name: metricbeat      
-
-  - name: Install Packetbeat
-    become: yes
-    import_role:
-      name: packetbeat
+#
+#  - name: Install Packetbeat
+#    become: yes
+#    import_role:
+#      name: packetbeat
  
 - hosts: logkibana
   gather_facts: yes
@@ -72,6 +72,10 @@
     import_role:
       name: logstash 
 
+#  - name: Install Filebeat
+#    become: yes
+#    import_role:
+#      name: filebeat
 
 - hosts: windows
   #gather_facts: yes
@@ -85,19 +89,19 @@
 #    import_role:
 #      name: winlogbeat
 #
-#  - name: Install Filebeat
-#    become: false
-#    import_role:
-#      name: filebeat
+  - name: Install Filebeat
+    become: false
+    import_role:
+      name: filebeat
 #
 #  - name: Install Metricbeat
 #    become: false
 #    import_role:
 #      name: metricbeat
-
-  - name: Install Packetbeat
-    become: false
-    import_role:
-      name: packetbeat
+#
+#  - name: Install Packetbeat
+#    become: false
+#    import_role:
+#      name: packetbeat
 
 
