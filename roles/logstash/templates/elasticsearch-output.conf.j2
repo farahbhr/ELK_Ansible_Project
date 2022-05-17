@@ -1,7 +1,0 @@
-output {
-  elasticsearch {
-    hosts => ["{{ elastic_host }}:{{ elastic_port }}"]
-    manage_template => false
-    index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
-  }
-}
