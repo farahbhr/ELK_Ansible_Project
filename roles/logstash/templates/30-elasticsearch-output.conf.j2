@@ -1,17 +1,26 @@
 output {
-  
+  email {
+      from => "farahbhr1@gmail.com"
+      subject => "Critical error"
+      to => "farahbhr1@gmail.com"
+      #authentication => "plain"
+      #codec => "plain"
+      #debug => 'true'
+      #address => 'smtp.gmail.com'
+      address => "smtp.gmail.com"
+      domain => "smtp.gmail.com"
+      via => "smtp"
+      username => "farahbhr1@gmail.com"
+      password => "hsivhwxkcrfjtgwf"
+      body => "A critical error occured, visit kibana page for more details"
+      #port => 587
+      port => 25
+      use_tls => true
+  }
   elasticsearch {
     hosts => ["{{ elastic_host }}:{{ elastic_port }}"]
     manage_template => false
     index => "%{[@metadata][beat]}-%{+YYYY.MM}"
-    document_type => "%{[@metadata][type]}"
+    #document_type => "%{[@metadata][type]}"
   }
-
-#  email {
-#    from => "logstash@log.com
-#    subject => "logstash alert"
-#    to => "farahbhr1@gmail.com"
-#    via => "smtp"
-#    body => "critical log , visit this link http://192.168.56.102:5601"
-#  }
 }

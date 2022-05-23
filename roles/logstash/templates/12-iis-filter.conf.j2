@@ -6,13 +6,14 @@ filter{
         drop {}
       }
       grok {
-        match => { "message" => "%{TIMESTAMP_ISO8601:log_timestamp} %{WORD:iisSite} %{IPORHOST:server_ip} %{WORD:method} %{URIPATH:url} %{NOTSPACE:querystring} %{NUMBER:port} %{NOTSPACE:username} %{IPORHOST:client_ip} %{NOTSPACE:useragent} %{NOTSPACE:referer} %{NUMBER:response} %{NUMBER:subresponse} %{NUMBER:scstatus} %{NUMBER:server_to_client_bytes:int} %{NUMBER:client_to_server_bytes:int} %{NUMBER:timetaken:int}"}
+        match => { "message" => '%{TIMESTAMP_ISO8601:log_timestamp} %{WORD:iisSite} %{IPORHOST:server_ip} %{WORD:method} %{URIPATH:url} %{NOTSPACE:querystring} %{NUMBER:port} %{NOTSPACE:username} %{IPORHOST:client_ip} %{NOTSPACE:useragent} %{NOTSPACE:referer} %{NUMBER:response} %{NUMBER:subresponse} %{NUMBER:scstatus} %{NUMBER:server_to_client_bytes:int} %{NUMBER:client_to_server_bytes:int} %{NUMBER:timetaken:int}'}
         remove_field => "message"
       }
       # set the event timestamp from the log
       date {
         match => [ "log_timestamp", "YYYY-MM-dd HH:mm:ss" ]
         timezone => "Etc/UCT"
+        target => "@timestamp"
       }
       #date {
       #  match => [ "log_timestamp", "ISO8601" ]

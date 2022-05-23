@@ -30,11 +30,11 @@
 #    dest: /etc/logstash/conf.d/11-iis-filter.conf
 #  notify: Restart Logstash
 
-- name: Create 12-iis-filter.conf.j2
-  template:
-    src: 12-iis-filter.conf.j2
-    dest: /etc/logstash/conf.d/12-iis-filter.conf
-  notify: Restart Logstash
+#- name: Create 12-iis-filter.conf.j2
+#  template:
+#    src: 12-iis-filter.conf.j2
+#    dest: /etc/logstash/conf.d/12-iis-filter.conf
+#  notify: Restart Logstash
 
 - name: Create 13-vcs-filter.conf.j2
   template:

@@ -1,13 +1,25 @@
 filter{
-  if [fields][type] == "vcs" {
+#  if [fields][type] == "vcs" {
+#  if [fields][app_id] == "vcs" {
+#  if [type] == "log" {
+  if "vcs" in [tags] {
     # ignore log comments
     if [message] =~ "^#" {
       drop {}
     }
     grok {
-      match => { "message" => "%{TIMESTAMP_ISO8601:log_timestamp} %{WORD:server} %{WORD:service}: %{NOTSPACE:code} %{GREEDYDATA:logmsg}" }
+      match => { "message" => [ '%{TIMESTAMP_ISO8601:log_timestamp} %{WORD:server} %{WORD:vcs_service}: %{NOTSPACE:thread} %{GREEDYDATA:log_msg}',
+         '%{TIMESTAMP_ISO8601:log_timestamp}  %{WORD:server} %{WORD:vcs_service}: %{NOTSPACE:thread} %{GREEDYDATA:log_msg}',
+         '%{TIMESTAMP_ISO8601:log_timestamp}  %{WORD:server} %{GREEDYDATA:log_msg}',
+         '%{TIMESTAMP_ISO8601:log_timestamp} %{WORD:server} %{GREEDYDATA:log_msg}' ]
+      }
                 
       remove_field => "message"
+    }
+    # set the event timestamp from the log
+    date {
+      match => [ "log_timestamp", "YYYY-MM-dd HH:mm:ss.SSS", "YYYY-MM-dd HH:mm:ss.SS" ]
+      target => "@timestamp"
     }
   }
 }

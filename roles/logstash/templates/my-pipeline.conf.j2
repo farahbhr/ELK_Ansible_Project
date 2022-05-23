@@ -1,0 +1,34 @@
+input {
+	beats {
+   		port => {{ logstash_port }}
+ 	}
+}
+filter {
+       # check that fields match your IIS log settings
+       grok {
+               match => ["message", "%{TIMESTAMP_ISO8601:timestamp} %{IPORHOST:site} %{WORD:method} %{URIPATH:page
+} %{NOTSPACE:querystring} %{NUMBER:port} %{NOTSPACE:username} %{IPORHOST:clienthost} %{NOTSPACE:useragent} (%{URI:r
+eferer})? %{NUMBER:response} %{NUMBER:subresponse} %{NUMBER:scstatus} %{NUMBER:time_taken}"]
+       }
+      
+       # set the event timestamp from the log
+       # https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html
+       date {
+          match => [ "timestamp", "YYYY-MM-dd HH:mm:ss" ]
+          timezone => "Etc/UCT"
+       }
+      
+       # matches the big, long nasty useragent string to the actual browser name, version, etc
+       # https://www.elastic.co/guide/en/logstash/current/plugins-filters-useragent.html
+       useragent {
+          source=> "useragent"
+           prefix=> "browser_"
+       }
+}
+# output logs to console and to elasticsearch
+output {
+       elasticsearch {
+           hosts => ["{{ elastic_host }}:{{ elastic_port }}"]
+           index => "iis-log-collection"
+       }
+}

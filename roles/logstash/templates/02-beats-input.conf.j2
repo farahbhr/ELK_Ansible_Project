@@ -2,4 +2,7 @@ input {
   beats {
     port => {{ logstash_port }}
   }
+  stdin {
+    type => "mybeat"
+  }
 }

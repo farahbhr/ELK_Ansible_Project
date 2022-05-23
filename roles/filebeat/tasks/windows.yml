@@ -16,7 +16,7 @@
 
 #- name: Windows | Unzip filebeat
 #  win_unzip:
-#    src: "{{ filebeat_path }}/{{ filebeat_download_file }}{{ file_ext }}"
+#   src: "{{ filebeat_path }}/{{ filebeat_download_file }}{{ file_ext }}"
 #    dest: "{{ filebeat_path }}"
 
 - name: Windows | Install the service via script
@@ -30,16 +30,21 @@
     dest: "{{ filebeat_path }}/{{ filebeat_download_file }}/filebeat.yml"
   notify: Restart filebeat win
 
-- name: Windows | Enable and configure iis module
-  win_command: powershell.exe -cd "{{ filebeat_path }}/{{ filebeat_download_file }}" ; ./filebeat modules enable iis
-  args:
-    chdir: "{{ filebeat_path }}/{{ filebeat_download_file }}"
+#- name: Windows | Enable and configure iis module
+#  win_command: powershell.exe -cd "{{ filebeat_path }}/{{ filebeat_download_file }}" ; ./filebeat modules enable iis
+#  args:
+#    chdir: "{{ filebeat_path }}/{{ filebeat_download_file }}"
 
-- name: Windows | Copy IIS module configuration
-  win_template:
-    src: iis.yml.j2
-    dest: "{{ filebeat_path }}/{{ filebeat_download_file }}/modules.d/iis.yml"
-  notify: Restart filebeat win
+#- name: Windows | Copy IIS module configuration
+#  win_template:
+#    src: iis.yml.j2
+#    dest: "{{ filebeat_path }}/{{ filebeat_download_file }}/modules.d/iis.yml"
+#  notify: Restart filebeat win
+
+
+
+
+
 
 
 

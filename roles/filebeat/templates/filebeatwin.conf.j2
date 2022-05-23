@@ -1,7 +1,7 @@
 #=========================== Filebeat inputs =============================
 
 filebeat.inputs:
-- type: log
+- type: filestream
   enabled: true
   paths:
     - C:\Users\test_user\Desktop\VCS_logs\*\messages.err
@@ -10,8 +10,10 @@ filebeat.inputs:
 #    - C:\ProgramData\winlogbeat\logs\*
 
 #logging.level: debug
-  fields:
-    type: vcs
+  tags: ["vcs"]
+  #fields:
+  #  app_id: vcs
+    #type: vcs
 
 
 #filebeat.registry.path: C:\ProgramData\filebeat\registry\filebeat\*
@@ -22,9 +24,9 @@ filebeat.inputs:
 
 #============================= Filebeat modules ===============================
 
-filebeat.config.modules:
-  path: ${path.config}/modules.d/*.yml
-  reload.enabled: true
+#filebeat.config.modules:
+#  path: ${path.config}/modules.d/*.yml
+#  reload.enabled: true
 
 #==================== Elasticsearch template setting ==========================
 
