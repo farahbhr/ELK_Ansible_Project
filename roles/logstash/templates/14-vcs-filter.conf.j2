@@ -1,0 +1,24 @@
+filter{
+  if [event][module] == "system" {
+    if [fileset][name] == "syslog" {
+      # ignore log comments
+      if [message] =~ "^#" {
+        drop {}
+      }
+      grok {
+        match => { "message" => [ '%{TIMESTAMP_ISO8601:log_timestamp} %{WORD:server} %{WORD:vcs_service}: %{NOTSPACE:thread} %{GREEDYDATA:log_msg}',
+           '%{TIMESTAMP_ISO8601:log_timestamp}  %{WORD:server} %{WORD:vcs_service}: %{NOTSPACE:thread} %{GREEDYDATA:log_msg}',
+           '%{TIMESTAMP_ISO8601:log_timestamp}  %{WORD:server} %{GREEDYDATA:log_msg}',
+           '%{TIMESTAMP_ISO8601:log_timestamp} %{WORD:server} %{GREEDYDATA:log_msg}' ]
+        }
+
+        remove_field => "message"
+      }
+      # set the event timestamp from the log
+      date {
+        match => [ "log_timestamp", "YYYY-MM-dd HH:mm:ss.SSS", "YYYY-MM-dd HH:mm:ss.SS" ]
+        target => "@timestamp"
+      }
+    }
+  }
+}

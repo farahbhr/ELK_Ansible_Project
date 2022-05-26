@@ -18,29 +18,17 @@
     dest: /etc/logstash/conf.d/02-beats-input.conf
   notify: Restart Logstash
 
-#- name: Create 10-syslog-filter.conf.j2
-#  template:
-#    src: 10-syslog-filter.conf.j2
-#    dest: /etc/logstash/conf.d/10-syslog-filter.conf
-#  notify: Restart Logstash
-
-#- name: Create 11-iis-filter.conf.j2
-#  template:
-#    src: 11-iis-filter.conf.j2
-#    dest: /etc/logstash/conf.d/11-iis-filter.conf
-#  notify: Restart Logstash
-
-#- name: Create 12-iis-filter.conf.j2
-#  template:
-#    src: 12-iis-filter.conf.j2
-#    dest: /etc/logstash/conf.d/12-iis-filter.conf
-#  notify: Restart Logstash
-
-- name: Create 13-vcs-filter.conf.j2
+- name: Create 12-iis-filter.conf.j2
   template:
-    src: 13-vcs-filter.conf.j2
-    dest: /etc/logstash/conf.d/13-vcs-filter.conf
+    src: 12-iis-filter.conf.j2
+    dest: /etc/logstash/conf.d/12-iis-filter.conf
   notify: Restart Logstash
+
+#- name: Create 14-vcs-filter.conf.j2
+#  template:
+#    src: 14-vcs-filter.conf.j2
+#    dest: /etc/logstash/conf.d/14-vcs-filter.conf
+#  notify: Restart Logstash
 
 - name: Create 30-elasticsearch-output.conf.j2
   template:
@@ -49,31 +37,10 @@
   notify: Restart Logstash
 
 
-#- name: Create beats-input.conf
-#  template:
-#    src: input.conf.j2
-#    dest: /etc/logstash/conf.d/input.conf
-#  notify: Restart Logstash
-#
-#- name: Create iis-logs-filter.conf
-#  template:
-#    src: iis_filter.conf.j2
-#    dest: /etc/logstash/conf.d/iis_filter.conf
-#  notify: Restart Logstash
-#
-#- name: Create elasticsearch-output.conf
-#  template:
-#    src: output.conf.j2
-#    dest: /etc/logstash/conf.d/output.conf
-#  notify: Restart Logstash
 
-#- name: Create my-pipeline.conf
-#  template:
-#    src: my-pipeline.conf.j2
-#    dest: /etc/logstash/conf.d/my-pipeline.conf
-#  notify: Restart Logstash
 
-#- name: Run logstash
+
+#- name: Reload logstash automatically
 #  command: /usr/share/logstash/bin/logstash -f my-pipeline.conf --config.reload.automatic
 
 # - name: 

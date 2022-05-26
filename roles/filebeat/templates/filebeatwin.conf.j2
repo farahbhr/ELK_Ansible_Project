@@ -1,16 +1,16 @@
 #=========================== Filebeat inputs =============================
 
-filebeat.inputs:
-- type: filestream
-  enabled: true
-  paths:
-    - C:\Users\test_user\Desktop\VCS_logs\*\messages.err
-    - C:\Users\test_user\Desktop\VCS_logs\*\messages.txt
+#filebeat.inputs:
+#- type: filestream
+#  enabled: true
+#  paths:
+#    - C:\Users\test_user\Desktop\VCS_logs\*\messages.err
+#    - C:\Users\test_user\Desktop\VCS_logs\*\messages.txt
 #    - C:\Users\test_user\Desktop\IIS_logs\*.log
 #    - C:\ProgramData\winlogbeat\logs\*
 
 #logging.level: debug
-  tags: ["vcs"]
+#  tags: ["vcs"]
   #fields:
   #  app_id: vcs
     #type: vcs
@@ -24,9 +24,9 @@ filebeat.inputs:
 
 #============================= Filebeat modules ===============================
 
-#filebeat.config.modules:
-#  path: ${path.config}/modules.d/*.yml
-#  reload.enabled: true
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: true
 
 #==================== Elasticsearch template setting ==========================
 

@@ -41,6 +41,16 @@
 #    dest: "{{ filebeat_path }}/{{ filebeat_download_file }}/modules.d/iis.yml"
 #  notify: Restart filebeat win
 
+- name: Windows | Enable and configure syslog system module
+  win_command: powershell.exe -cd "{{ filebeat_path }}/{{ filebeat_download_file }}" ; ./filebeat modules enable system
+  args:
+    chdir: "{{ filebeat_path }}/{{ filebeat_download_file }}"
+
+- name: Windows | Copy system module configuration
+  win_template:
+    src: system.yml.j2
+    dest: "{{ filebeat_path }}/{{ filebeat_download_file }}/modules.d/system.yml"
+  notify: Restart filebeat win
 
 
 

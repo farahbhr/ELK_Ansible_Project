@@ -1,0 +1,7 @@
+- module: system
+  syslog:
+    enabled: true
+    var.paths: ["C:/Users/test_user/Desktop/VCS_logs/*/messages.err", "C:/Users/test_user/Desktop/VCS_logs/*/messages.txt"]
+  auth:
+    enabled: false
+    #var.paths: ["/custom/path/to/logs"]
