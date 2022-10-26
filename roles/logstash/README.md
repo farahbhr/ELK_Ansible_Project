@@ -1,4 +1,4 @@
-Role Name
+Logstash
 =========
 
 This roles installs and configure logstash on target server
