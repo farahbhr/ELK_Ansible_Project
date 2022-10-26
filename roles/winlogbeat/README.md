@@ -1,4 +1,4 @@
-Role Name
+Winlogbeat
 =========
 
 This roles installs and configures winlogbeat on target servers.</br>
