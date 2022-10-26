@@ -1,4 +1,4 @@
-Role Name
+Metricbeat
 =========
 
 This roles installs and configures metricbeat on target servers.</br>
