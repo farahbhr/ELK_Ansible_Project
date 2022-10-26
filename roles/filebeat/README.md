@@ -1,4 +1,4 @@
-Role Name
+Filebeat
 =========
 
 This roles installs and configures filebeat on target servers.</br>
