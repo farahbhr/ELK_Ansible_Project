@@ -1,4 +1,4 @@
-Role Name
+Elasticsearch
 =========
 
 This roles installs and configure elasticsearch on target server
