@@ -1,4 +1,4 @@
-Role Name
+Packetbeat
 =========
 
 This roles installs and configures packetbeat on target servers.</br>
