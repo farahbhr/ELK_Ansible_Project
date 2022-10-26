@@ -1,4 +1,4 @@
-Role Name
+Kibana
 =========
 
 This roles installs and configures Kibana UI on target server.
